@@ -1,0 +1,24 @@
+{
+  "name": "qa-automation-portfolio",
+  "version": "1.0.0",
+  "description": "Personal project to build a modern test automation portfolio using Playwright and TypeScript.\r It covers three progressive levels: SauceDemo (UI), Restful Booker (API), Automation Exercise (full E2E).\r Stack: Playwright + TypeScript, paired with Claude as an AI mentor/assistant throughout development.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carmineQA/qa-automation-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/carmineQA/qa-automation-portfolio/issues"
+  },
+  "homepage": "https://github.com/carmineQA/qa-automation-portfolio#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^10.5.0",
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.1"
+  }
+}
