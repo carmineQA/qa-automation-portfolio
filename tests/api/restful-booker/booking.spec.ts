@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { BookingApiClient, BookingPayload } from '../../../api/bookingApiClient';
-import { createBookingResponseSchema } from '../../../api/bookingSchema';
+import { BookingApiClient, BookingPayload } from '../../../api/restfulBooker/bookingApiClient';
+import { createBookingResponseSchema } from '../../../api/restfulBooker/bookingSchema';
 
 const validPayload: BookingPayload = {
   firstname: 'Mario',

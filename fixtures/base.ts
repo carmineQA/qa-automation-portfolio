@@ -1,5 +1,5 @@
 import { test as base, Page } from '@playwright/test';
-import { LoginPage } from '../pages/loginPage';
+import { LoginPage } from '../pages/saucedemo/loginPage';
 
 type Fixtures = { loggedInPage: Page };
 

@@ -1,5 +1,5 @@
 import { test, expect } from '../../../fixtures/base';
-import { NavigationMenu } from '../../../components/navigationMenu';
+import { NavigationMenu } from '../../../components/saucedemo/navigationMenu';
 
 test('logout redirects back to the login page', async ({ loggedInPage }) => {
   const navigationMenu = new NavigationMenu(loggedInPage);
