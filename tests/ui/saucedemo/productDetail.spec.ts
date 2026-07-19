@@ -2,7 +2,7 @@ import { test, expect } from '../../../fixtures/base';
 import { InventoryPage } from '../../../pages/inventoryPage';
 import { ProductDetailPage } from '../../../pages/productDetailPage';
 
-test('navigazione dal catalogo al dettaglio prodotto', async ({ loggedInPage }) => {
+test('navigating from the catalog to the product detail page', async ({ loggedInPage }) => {
   const productName = 'Sauce Labs Backpack';
   const inventoryPage = new InventoryPage(loggedInPage);
   await inventoryPage.openProductDetails(productName);

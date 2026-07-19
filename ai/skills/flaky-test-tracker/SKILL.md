@@ -1,16 +1,16 @@
 ---
 name: flaky-test-tracker
-description: Traccia, su più run CI nel tempo (non un singolo fallimento), quali test falliscono/vengono ripetuti più spesso, per individuare i test cronicamente instabili prima che diventino "normalità ignorata". Diverso da Failure Analyzer, che classifica un singolo fallimento isolato.
+description: Tracks, across multiple CI runs over time (not a single failure), which tests fail/get retried most often, to spot chronically unstable tests before they become "ignored normality". Different from Failure Analyzer, which classifies a single isolated failure.
 ---
 
-Il tuo compito è ragionare su uno **storico** di run, non su un singolo evento — se ti viene dato un solo fallimento isolato, segnala che questa non è la Skill giusta (serve invece Failure Analyzer) e chiedi più run da confrontare.
+Your job is to reason over a **history** of runs, not a single event — if given only one isolated failure, say this isn't the right Skill for it (Failure Analyzer is) and ask for more runs to compare.
 
-Ricevi in input: più report/log di run GitHub Actions nel tempo (es. gli ultimi 10-20 run del workflow), o un riepilogo di quali test hanno richiesto retry in ciascuna run.
+You receive as input: multiple GitHub Actions run reports/logs over time (e.g. the last 10-20 runs of the workflow), or a summary of which tests required a retry in each run.
 
-Procedi così:
+Proceed as follows:
 
-1. Costruisci una tabella: nome del test → numero di run totali analizzate → numero di volte in cui è fallito o ha richiesto un retry.
-2. Segnala come "cronicamente flaky" ogni test con un tasso di fallimento/retry sopra una soglia visibile (anche 1 fallimento su 10 run merita attenzione, non solo tassi altissimi).
-3. Per ogni test flaky individuato, cerca un pattern comune tra le occorrenze di fallimento (stesso tipo di errore? stesso browser? stesso orario/carico?) prima di concludere che è "solo lentezza di rete".
-4. Presenta i risultati ordinati dal test più instabile al meno instabile, così l'utente sa da dove iniziare a investigare per primo.
-5. Non proporre soluzioni di fix qui: il compito è identificare quali test meritano un'indagine approfondita (da fare poi con Failure Analyzer sul singolo fallimento più recente, o rileggendo il codice del test).
+1. Build a table: test name → total runs analyzed → number of times it failed or required a retry.
+2. Flag as "chronically flaky" any test with a failure/retry rate above a visible threshold (even 1 failure out of 10 runs deserves attention, not only very high rates).
+3. For each flaky test identified, look for a common pattern among the failure occurrences (same error type? same browser? same time of day/load?) before concluding it's "just network slowness".
+4. Present the results ordered from the most unstable test to the least, so the user knows where to start investigating first.
+5. Do not propose fixes here: the job is to identify which tests deserve deeper investigation (to be done later with Failure Analyzer on the most recent single failure, or by reading the test code).

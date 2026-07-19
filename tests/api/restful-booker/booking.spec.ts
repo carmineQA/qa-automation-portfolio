@@ -14,12 +14,12 @@ const validPayload: BookingPayload = {
   additionalneeds: 'Breakfast',
 };
 
-test('ping conferma che l\'API è attiva', async ({ request }) => {
+test('ping confirms the API is up', async ({ request }) => {
   const response = await request.get('/ping');
   expect(response.status()).toBe(201);
 });
 
-test('creazione prenotazione restituisce uno schema valido', async ({ request }) => {
+test('creating a booking returns a valid schema', async ({ request }) => {
   const response = await request.post('/booking', { data: validPayload });
   expect(response.status()).toBe(200);
 
@@ -29,12 +29,12 @@ test('creazione prenotazione restituisce uno schema valido', async ({ request })
   expect(body.booking.firstname).toBe(validPayload.firstname);
 });
 
-test('creazione, lettura, aggiornamento e cancellazione di una prenotazione (CRUD completo)', async ({ request }) => {
+test('create, read, update and delete a booking (full CRUD flow)', async ({ request }) => {
   const client = new BookingApiClient(request);
   const username = process.env.RESTFUL_BOOKER_USERNAME;
   const password = process.env.RESTFUL_BOOKER_PASSWORD;
   if (!username || !password) {
-    throw new Error('RESTFUL_BOOKER_USERNAME / RESTFUL_BOOKER_PASSWORD non trovate: controlla il file .env');
+    throw new Error('RESTFUL_BOOKER_USERNAME / RESTFUL_BOOKER_PASSWORD not found: check the .env file');
   }
   await client.authenticate(username, password);
 
@@ -58,7 +58,7 @@ test('creazione, lettura, aggiornamento e cancellazione di una prenotazione (CRU
   expect(deleteResponse.status()).toBe(201);
 });
 
-test('creazione prenotazione senza il campo obbligatorio firstname restituisce errore', async ({ request }) => {
+test('creating a booking without the required firstname field returns an error', async ({ request }) => {
   const { firstname, ...invalidPayload } = validPayload;
   const response = await request.post('/booking', { data: invalidPayload });
   expect(response.status()).toBe(500);

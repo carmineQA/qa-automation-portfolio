@@ -2,13 +2,13 @@ import { test, expect } from '../../../fixtures/base';
 import { InventoryPage } from '../../../pages/inventoryPage';
 import { CartPage } from '../../../pages/cartPage';
 
-test('aggiunta di un prodotto al carrello aggiorna il badge', async ({ loggedInPage }) => {
+test('adding a product to the cart updates the badge', async ({ loggedInPage }) => {
   const inventoryPage = new InventoryPage(loggedInPage);
   await inventoryPage.addProductToCart('Sauce Labs Backpack');
   expect(await inventoryPage.getCartBadgeCount()).toBe(1);
 });
 
-test('rimozione di un prodotto dal carrello aggiorna badge e riepilogo', async ({ loggedInPage }) => {
+test('removing a product from the cart updates the badge and the summary', async ({ loggedInPage }) => {
   const inventoryPage = new InventoryPage(loggedInPage);
   await inventoryPage.addProductToCart('Sauce Labs Backpack');
   await inventoryPage.addProductToCart('Sauce Labs Bike Light');
