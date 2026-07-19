@@ -1,0 +1,1 @@
+This is a sample file used by the Automation Exercise contact form test to verify file upload support.

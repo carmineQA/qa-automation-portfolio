@@ -36,19 +36,19 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      testIgnore: 'tests/api/**',
+      testIgnore: ['tests/api/**', 'tests/e2e/**'],
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
-      testIgnore: 'tests/api/**',
+      testIgnore: ['tests/api/**', 'tests/e2e/**'],
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
-      testIgnore: 'tests/api/**',
+      testIgnore: ['tests/api/**', 'tests/e2e/**'],
       use: { ...devices['Desktop Safari'] },
     },
 
@@ -57,6 +57,15 @@ export default defineConfig({
       testMatch: 'tests/api/**/*.spec.ts',
       use: {
         baseURL: 'https://restful-booker.herokuapp.com',
+      },
+    },
+
+    {
+      name: 'e2e',
+      testMatch: 'tests/e2e/**/*.spec.ts',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: 'https://automationexercise.com',
       },
     },
 
