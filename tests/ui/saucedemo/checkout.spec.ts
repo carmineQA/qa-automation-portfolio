@@ -1,9 +1,9 @@
 import { test, expect } from '../../../fixtures/base';
-import { InventoryPage } from '../../../pages/inventoryPage';
-import { CartPage } from '../../../pages/cartPage';
-import { CheckoutInfoPage } from '../../../pages/checkoutInfoPage';
-import { CheckoutOverviewPage } from '../../../pages/checkoutOverviewPage';
-import { CheckoutCompletePage } from '../../../pages/checkoutCompletePage';
+import { InventoryPage } from '../../../pages/saucedemo/inventoryPage';
+import { CartPage } from '../../../pages/saucedemo/cartPage';
+import { CheckoutInfoPage } from '../../../pages/saucedemo/checkoutInfoPage';
+import { CheckoutOverviewPage } from '../../../pages/saucedemo/checkoutOverviewPage';
+import { CheckoutCompletePage } from '../../../pages/saucedemo/checkoutCompletePage';
 
 test('a full checkout with valid data reaches the confirmation page', async ({ loggedInPage }) => {
   const inventoryPage = new InventoryPage(loggedInPage);

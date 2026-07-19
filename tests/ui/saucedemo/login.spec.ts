@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../../pages/loginPage';
+import { LoginPage } from '../../../pages/saucedemo/loginPage';
 import { users } from '../../../test-data/users';
 
 test('login with standard_user succeeds', async ({ page }) => {

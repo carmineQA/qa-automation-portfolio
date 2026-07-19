@@ -1,6 +1,6 @@
 import { test, expect } from '../../../fixtures/base';
-import { InventoryPage } from '../../../pages/inventoryPage';
-import { ProductDetailPage } from '../../../pages/productDetailPage';
+import { InventoryPage } from '../../../pages/saucedemo/inventoryPage';
+import { ProductDetailPage } from '../../../pages/saucedemo/productDetailPage';
 
 test('navigating from the catalog to the product detail page', async ({ loggedInPage }) => {
   const productName = 'Sauce Labs Backpack';

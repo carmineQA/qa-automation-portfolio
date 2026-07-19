@@ -1,5 +1,5 @@
 import { test, expect } from '../../../fixtures/base';
-import { InventoryPage } from '../../../pages/inventoryPage';
+import { InventoryPage } from '../../../pages/saucedemo/inventoryPage';
 
 test('sorting products by price ascending', async ({ loggedInPage }) => {
   const inventoryPage = new InventoryPage(loggedInPage);

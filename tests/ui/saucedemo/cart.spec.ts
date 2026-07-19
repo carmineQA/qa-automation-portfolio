@@ -1,6 +1,6 @@
 import { test, expect } from '../../../fixtures/base';
-import { InventoryPage } from '../../../pages/inventoryPage';
-import { CartPage } from '../../../pages/cartPage';
+import { InventoryPage } from '../../../pages/saucedemo/inventoryPage';
+import { CartPage } from '../../../pages/saucedemo/cartPage';
 
 test('adding a product to the cart updates the badge', async ({ loggedInPage }) => {
   const inventoryPage = new InventoryPage(loggedInPage);
