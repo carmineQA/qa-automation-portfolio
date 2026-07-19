@@ -31,7 +31,12 @@ test('creazione prenotazione restituisce uno schema valido', async ({ request })
 
 test('creazione, lettura, aggiornamento e cancellazione di una prenotazione (CRUD completo)', async ({ request }) => {
   const client = new BookingApiClient(request);
-  await client.authenticate('admin', 'password123');
+  const username = process.env.RESTFUL_BOOKER_USERNAME;
+  const password = process.env.RESTFUL_BOOKER_PASSWORD;
+  if (!username || !password) {
+    throw new Error('RESTFUL_BOOKER_USERNAME / RESTFUL_BOOKER_PASSWORD non trovate: controlla il file .env');
+  }
+  await client.authenticate(username, password);
 
   const createResponse = await client.createBooking(validPayload);
   expect(createResponse.status()).toBe(200);
