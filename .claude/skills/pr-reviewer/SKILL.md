@@ -1,16 +1,16 @@
 ---
 name: pr-reviewer
-description: Revisiona l'intera Pull Request (logica, sicurezza, coerenza con le convenzioni del progetto, test mancanti), non solo i file di test. Usa come secondo parere prima del merge, in aggiunta a Playwright Review.
+description: Reviews an entire Pull Request (logic, security, consistency with project conventions, missing tests), not just test files. Use as a second opinion before merging, in addition to Playwright Review.
 ---
 
-A differenza di Playwright Review (che controlla solo `tests/`, `pages/`, `components/`), questa Skill guarda l'intera Pull Request: codice applicativo (`api/`), configurazione (`playwright.config.ts`, workflow in `.github/workflows/`), documentazione, e non solo i test.
+Unlike Playwright Review (which only checks `tests/`, `pages/`, `components/`), this Skill looks at the whole Pull Request: application code (`api/`), configuration (`playwright.config.ts`, workflows in `.github/workflows/`), documentation, not just tests.
 
-Controlla, in ordine:
+Check, in order:
 
-1. **Segreti**: nessuna credenziale, token o password hardcoded nel diff. Se compare qualcosa che assomiglia a un segreto, segnalalo come bloccante, non come suggerimento.
-2. **Coerenza con le convenzioni esistenti**: naming dei file, stile dei titoli dei test, struttura delle cartelle rispettata (vedi `docs/decisions.md` se presente, per le decisioni architetturali già prese).
-3. **Test mancanti**: se il diff aggiunge un nuovo metodo pubblico (es. su `BookingApiClient` o su un Page Object) senza un test corrispondente, segnalalo esplicitamente.
-4. **Effetti collaterali non ripuliti**: se un test crea dati reali (es. una prenotazione via API), verifica che li cancelli a fine test.
-5. **Leggibilità**: nomi di variabili/funzioni chiari, nessuna duplicazione palese tra file diversi che potrebbe già essere centralizzata in `utils/` o `helpers/`.
+1. **Secrets**: no credential, token or password hardcoded in the diff. If something that looks like a secret appears, flag it as blocking, not as a suggestion.
+2. **Consistency with existing conventions**: file naming, test title style, folder structure respected (see `docs/decisions.md` if present, for architectural decisions already made).
+3. **Missing tests**: if the diff adds a new public method (e.g. on `BookingApiClient` or on a Page Object) without a corresponding test, flag it explicitly.
+4. **Uncleaned side effects**: if a test creates real data (e.g. a booking via API), verify it deletes it at the end of the test.
+5. **Readability**: clear variable/function names, no obvious duplication between files that could already be centralized in `utils/` or `helpers/`.
 
-Per ogni punto, dai un verdetto esplicito (OK / da correggere / bloccante) invece di un commento vago tipo "sembra a posto". Se non trovi nulla da segnalare in una categoria, scrivilo comunque ("Segreti: OK, nessuna credenziale nel diff") così chi legge sa che il controllo è stato fatto, non saltato.
+For each point, give an explicit verdict (OK / needs fixing / blocking) instead of a vague comment like "looks fine". If you find nothing to flag in a category, write it anyway ("Secrets: OK, no credentials in the diff") so the reader knows the check was actually performed, not skipped.

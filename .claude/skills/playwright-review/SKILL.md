@@ -1,18 +1,18 @@
 ---
 name: playwright-review
-description: Revisiona file di test e Page Object Playwright/TypeScript applicando le best practice del progetto (niente assert nei Page Object, niente wait fissi, isolamento tra test, naming coerente). Usa prima di ogni PR che tocca tests/, pages/, components/ o fixtures/.
+description: Reviews Playwright/TypeScript test files and Page Objects against project best practices (no assertions in Page Objects, no fixed waits, test isolation, consistent naming). Use before every PR touching tests/, pages/, components/ or fixtures/.
 ---
 
-Controlla, in ordine, il file o il diff fornito:
+Check, in order, the given file or diff:
 
-1. **Asserzioni fuori posto**: nessun `expect(...)` dentro `pages/*.ts` o `components/*.ts`. Le asserzioni vanno solo nei file `*.spec.ts` dentro `tests/`.
-2. **Wait fissi**: nessun `page.waitForTimeout(...)`. Ogni attesa deve essere su una condizione reale (`expect(locator).toBeVisible()`, `page.waitForResponse(...)`, ecc.).
-3. **Isolamento tra test**: nessun test deve dipendere dall'ordine di esecuzione o da stato lasciato da un test precedente (es. un carrello non svuotato). Segnala se un test riusa dati creati da un altro test nello stesso file senza un setup esplicito.
-4. **Naming coerente**:
-   - file di test: `<area>.spec.ts` (es. `checkout.spec.ts`)
-   - Page Object: file `<Nome>Page.ts`, classe `<Nome>Page`
-   - titoli dei test: frase in linguaggio naturale che descrive il comportamento atteso
-5. **Selettori fragili**: preferire `[data-test="..."]` o `getByRole(...)` rispetto a selettori CSS legati allo stile (classi che potrebbero cambiare con un refactor grafico).
-6. **Fixture riusate correttamente**: se un test richiede un utente già loggato, deve usare `loggedInPage` da `fixtures/base.ts`, non ripetere login manuale.
+1. **Misplaced assertions**: no `expect(...)` inside `pages/*.ts` or `components/*.ts`. Assertions belong only in `*.spec.ts` files under `tests/`.
+2. **Fixed waits**: no `page.waitForTimeout(...)`. Every wait must be on a real condition (`expect(locator).toBeVisible()`, `page.waitForResponse(...)`, etc.).
+3. **Test isolation**: no test should depend on execution order or on state left behind by a previous test (e.g. a cart not emptied). Flag if a test reuses data created by another test in the same file without explicit setup.
+4. **Consistent naming**:
+   - test files: `<area>.spec.ts` (e.g. `checkout.spec.ts`)
+   - Page Objects: file `<Name>Page.ts`, class `<Name>Page`
+   - test titles: a natural-language sentence describing the expected behavior
+5. **Fragile selectors**: prefer `[data-test="..."]` or `getByRole(...)` over CSS selectors tied to styling (classes that could change with a visual refactor).
+6. **Correct fixture reuse**: if a test requires an already logged-in user, it must use `loggedInPage` from `fixtures/base.ts`, not repeat manual login.
 
-Per ogni violazione trovata, indica: file e riga, cosa c'è di sbagliato, come corrispondente esempio corretto dal resto del progetto (se esiste). Non riscrivere l'intero file: proponi solo la correzione puntuale, lasciando all'utente la decisione di applicarla.
+For every violation found, state: file and line, what is wrong, and the corresponding correct example from the rest of the project (if one exists). Do not rewrite the whole file: propose only the targeted fix, leaving the decision to apply it to the user.

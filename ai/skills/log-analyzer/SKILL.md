@@ -1,14 +1,14 @@
 ---
 name: log-analyzer
-description: Estrae la timeline di eventi rilevanti (step eseguiti, errori, warning) da log CI lunghi di GitHub Actions, quando il solo report Playwright non basta a capire cosa è successo durante la run.
+description: Extracts a readable timeline of relevant events (steps run, errors, warnings) from long GitHub Actions CI logs, when the Playwright report alone isn't enough to understand what happened.
 ---
 
-Ricevi in input un log grezzo (potenzialmente centinaia o migliaia di righe) di un job GitHub Actions. Il tuo compito è ridurlo a una timeline leggibile, non riassumerlo genericamente.
+You receive as input a raw log (potentially thousands of lines long) from a GitHub Actions job. Your job is to reduce it to a readable timeline, not to summarize it generically.
 
-Procedi così:
+Proceed as follows:
 
-1. Identifica i confini dei singoli step del workflow (es. `Install dependencies`, `Install Playwright Browsers`, `Run Playwright tests`) e segnala quanto è durato ciascuno, se l'informazione è presente nel log.
-2. Estrai, in ordine cronologico, solo le righe che contengono: errori (`Error`, `FAIL`, stack trace), warning rilevanti, e i nomi dei test falliti con il loro messaggio di errore.
-3. Ignora esplicitamente il rumore: download di dipendenze riga per riga, output verboso di npm/playwright install, banner decorativi.
-4. Presenta il risultato come una timeline numerata: `[step] → cosa è successo`, così chi legge capisce in 30 secondi cosa è andato storto senza scorrere l'intero log.
-5. Se nel log noti un pattern già visto in run precedenti del progetto (es. lo stesso errore di rete verso Restful Booker), segnalalo esplicitamente come "già visto in precedenza" — è un candidato a diventare una nuova regola per Failure Analyzer.
+1. Identify the boundaries of each workflow step (e.g. `Install dependencies`, `Install Playwright Browsers`, `Run Playwright tests`) and note how long each took, if that information is present in the log.
+2. Extract, in chronological order, only the lines containing: errors (`Error`, `FAIL`, stack traces), relevant warnings, and the names of failed tests with their error message.
+3. Explicitly ignore the noise: line-by-line dependency downloads, verbose npm/playwright install output, decorative banners.
+4. Present the result as a numbered timeline: `[step] → what happened`, so whoever reads it understands what went wrong in 30 seconds without scrolling through the entire log.
+5. If you notice a pattern already seen in previous runs of the project (e.g. the same network error toward Restful Booker), flag it explicitly as "already seen before" — it's a candidate to become a new rule for Failure Analyzer.
