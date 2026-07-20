@@ -25,7 +25,9 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run regression tests (shard ${{ matrix.shard }}/${{ strategy.job-total }})
-        run: npx playwright test --grep @regression --shard=${{ matrix.shard }}/${{ strategy.job-total }}
+        # The e2e project (Automation Exercise) is excluded from CI: see docs/decisions.md
+        # for why (the site blocks cloud CI IPs with an anti-bot challenge).
+        run: npx playwright test --grep @regression --project=chromium --project=firefox --project=webkit --project=api --shard=${{ matrix.shard }}/${{ strategy.job-total }}
         env:
           RESTFUL_BOOKER_USERNAME: ${{ secrets.RESTFUL_BOOKER_USERNAME }}
           RESTFUL_BOOKER_PASSWORD: ${{ secrets.RESTFUL_BOOKER_PASSWORD }}
