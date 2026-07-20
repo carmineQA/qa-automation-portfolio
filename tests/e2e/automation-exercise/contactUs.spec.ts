@@ -3,7 +3,7 @@ import path from 'path';
 import { ContactUsPage } from '../../../pages/automationExercise/contactUsPage';
 import { createRandomCustomer } from '../../../test-data/factories';
 
-test('submitting the contact form with a file attachment shows a success message', async ({ page }) => {
+test('@regression submitting the contact form with a file attachment shows a success message', async ({ page }) => {
   const customer = createRandomCustomer();
   const contactUsPage = new ContactUsPage(page);
   await contactUsPage.goto();

@@ -8,7 +8,7 @@ import { CheckoutPage } from '../../../pages/automationExercise/checkoutPage';
 import { PaymentPage } from '../../../pages/automationExercise/paymentPage';
 import { createRandomCustomer, createRandomAccountDetails } from '../../../test-data/factories';
 
-test('a full checkout with payment reaches the order confirmation message', async ({ page }) => {
+test('@regression a full checkout with payment reaches the order confirmation message', async ({ page }) => {
   const customer = createRandomCustomer();
   const accountDetails = createRandomAccountDetails();
 

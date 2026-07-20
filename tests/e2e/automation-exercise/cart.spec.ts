@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { ProductsPage } from '../../../pages/automationExercise/productsPage';
 import { CartPage } from '../../../pages/automationExercise/cartPage';
 
-test('adding multiple products updates the cart with the right items', async ({ page }) => {
+test('@regression adding multiple products updates the cart with the right items', async ({ page }) => {
   const productsPage = new ProductsPage(page);
   await productsPage.goto();
 

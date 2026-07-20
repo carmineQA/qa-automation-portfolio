@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Smoke Tests
 on:
   push:
     branches: [ main, master ]
@@ -17,8 +17,8 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npx playwright test
+    - name: Run smoke tests
+      run: npx playwright test --grep @smoke
       env:
         RESTFUL_BOOKER_USERNAME: ${{ secrets.RESTFUL_BOOKER_USERNAME }}
         RESTFUL_BOOKER_PASSWORD: ${{ secrets.RESTFUL_BOOKER_PASSWORD }}

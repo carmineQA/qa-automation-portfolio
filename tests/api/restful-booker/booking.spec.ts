@@ -14,12 +14,12 @@ const validPayload: BookingPayload = {
   additionalneeds: 'Breakfast',
 };
 
-test('ping confirms the API is up', async ({ request }) => {
+test('@regression ping confirms the API is up', async ({ request }) => {
   const response = await request.get('/ping');
   expect(response.status()).toBe(201);
 });
 
-test('creating a booking returns a valid schema', async ({ request }) => {
+test('@regression creating a booking returns a valid schema', async ({ request }) => {
   const response = await request.post('/booking', { data: validPayload });
   expect(response.status()).toBe(200);
 
@@ -29,7 +29,7 @@ test('creating a booking returns a valid schema', async ({ request }) => {
   expect(body.booking.firstname).toBe(validPayload.firstname);
 });
 
-test('create, read, update and delete a booking (full CRUD flow)', async ({ request }) => {
+test('@regression create, read, update and delete a booking (full CRUD flow)', async ({ request }) => {
   const client = new BookingApiClient(request);
   const username = process.env.RESTFUL_BOOKER_USERNAME;
   const password = process.env.RESTFUL_BOOKER_PASSWORD;
@@ -58,7 +58,7 @@ test('create, read, update and delete a booking (full CRUD flow)', async ({ requ
   expect(deleteResponse.status()).toBe(201);
 });
 
-test('creating a booking without the required firstname field returns an error', async ({ request }) => {
+test('@regression creating a booking without the required firstname field returns an error', async ({ request }) => {
   const { firstname, ...invalidPayload } = validPayload;
   const response = await request.post('/booking', { data: invalidPayload });
   expect(response.status()).toBe(500);
