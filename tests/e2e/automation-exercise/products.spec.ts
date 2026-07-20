@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { ProductsPage } from '../../../pages/automationExercise/productsPage';
 
-test('searching for a product shows only matching results', async ({ page }) => {
+test('@regression searching for a product shows only matching results', async ({ page }) => {
   const productsPage = new ProductsPage(page);
   await productsPage.goto();
   await productsPage.searchProduct('Dress');

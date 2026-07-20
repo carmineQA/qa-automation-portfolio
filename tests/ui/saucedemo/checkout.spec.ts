@@ -5,7 +5,7 @@ import { CheckoutInfoPage } from '../../../pages/saucedemo/checkoutInfoPage';
 import { CheckoutOverviewPage } from '../../../pages/saucedemo/checkoutOverviewPage';
 import { CheckoutCompletePage } from '../../../pages/saucedemo/checkoutCompletePage';
 
-test('a full checkout with valid data reaches the confirmation page', async ({ loggedInPage }) => {
+test('@smoke @regression a full checkout with valid data reaches the confirmation page', async ({ loggedInPage }) => {
   const inventoryPage = new InventoryPage(loggedInPage);
   await inventoryPage.addProductToCart('Sauce Labs Backpack');
   await inventoryPage.goToCart();

@@ -2,7 +2,7 @@ import { test, expect } from '../../../fixtures/base';
 import { InventoryPage } from '../../../pages/saucedemo/inventoryPage';
 import { ProductDetailPage } from '../../../pages/saucedemo/productDetailPage';
 
-test('navigating from the catalog to the product detail page', async ({ loggedInPage }) => {
+test('@regression navigating from the catalog to the product detail page', async ({ loggedInPage }) => {
   const productName = 'Sauce Labs Backpack';
   const inventoryPage = new InventoryPage(loggedInPage);
   await inventoryPage.openProductDetails(productName);

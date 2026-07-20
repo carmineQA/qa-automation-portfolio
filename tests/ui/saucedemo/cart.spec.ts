@@ -2,13 +2,13 @@ import { test, expect } from '../../../fixtures/base';
 import { InventoryPage } from '../../../pages/saucedemo/inventoryPage';
 import { CartPage } from '../../../pages/saucedemo/cartPage';
 
-test('adding a product to the cart updates the badge', async ({ loggedInPage }) => {
+test('@smoke @regression adding a product to the cart updates the badge', async ({ loggedInPage }) => {
   const inventoryPage = new InventoryPage(loggedInPage);
   await inventoryPage.addProductToCart('Sauce Labs Backpack');
   expect(await inventoryPage.getCartBadgeCount()).toBe(1);
 });
 
-test('removing a product from the cart updates the badge and the summary', async ({ loggedInPage }) => {
+test('@regression removing a product from the cart updates the badge and the summary', async ({ loggedInPage }) => {
   const inventoryPage = new InventoryPage(loggedInPage);
   await inventoryPage.addProductToCart('Sauce Labs Backpack');
   await inventoryPage.addProductToCart('Sauce Labs Bike Light');

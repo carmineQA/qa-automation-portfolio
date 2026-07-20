@@ -4,7 +4,7 @@ import { AccountInfoPage } from '../../../pages/automationExercise/accountInfoPa
 import { AccountPage } from '../../../pages/automationExercise/accountPage';
 import { createRandomCustomer, createRandomAccountDetails } from '../../../test-data/factories';
 
-test('registering a new user succeeds and logs them in automatically', async ({ page }) => {
+test('@regression registering a new user succeeds and logs them in automatically', async ({ page }) => {
   const customer = createRandomCustomer();
   const accountDetails = createRandomAccountDetails();
 

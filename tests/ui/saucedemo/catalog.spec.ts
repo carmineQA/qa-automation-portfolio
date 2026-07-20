@@ -1,7 +1,7 @@
 import { test, expect } from '../../../fixtures/base';
 import { InventoryPage } from '../../../pages/saucedemo/inventoryPage';
 
-test('sorting products by price ascending', async ({ loggedInPage }) => {
+test('@regression sorting products by price ascending', async ({ loggedInPage }) => {
   const inventoryPage = new InventoryPage(loggedInPage);
   await inventoryPage.sortBy('lohi');
   const prices = await inventoryPage.getProductPrices();
@@ -9,7 +9,7 @@ test('sorting products by price ascending', async ({ loggedInPage }) => {
   expect(prices).toEqual(sorted);
 });
 
-test('sorting products by price descending', async ({ loggedInPage }) => {
+test('@regression sorting products by price descending', async ({ loggedInPage }) => {
   const inventoryPage = new InventoryPage(loggedInPage);
   await inventoryPage.sortBy('hilo');
   const prices = await inventoryPage.getProductPrices();
@@ -17,7 +17,7 @@ test('sorting products by price descending', async ({ loggedInPage }) => {
   expect(prices).toEqual(sorted);
 });
 
-test('sorting products by name A-Z', async ({ loggedInPage }) => {
+test('@regression sorting products by name A-Z', async ({ loggedInPage }) => {
   const inventoryPage = new InventoryPage(loggedInPage);
   await inventoryPage.sortBy('az');
   const names = await inventoryPage.getProductNames();
@@ -25,7 +25,7 @@ test('sorting products by name A-Z', async ({ loggedInPage }) => {
   expect(names).toEqual(sorted);
 });
 
-test('sorting products by name Z-A', async ({ loggedInPage }) => {
+test('@regression sorting products by name Z-A', async ({ loggedInPage }) => {
   const inventoryPage = new InventoryPage(loggedInPage);
   await inventoryPage.sortBy('za');
   const names = await inventoryPage.getProductNames();
