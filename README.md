@@ -17,3 +17,28 @@ Current status:
   flaky test tracking, log analysis, Playwright review, PR review, root cause finding).
 - AI QA Engineer agent complete — investigates CI failures via GitHub/Jira MCP connectors and the
   skills above, and proposes (never creates or edits) Jira tickets.
+
+## Getting started
+
+```bash
+git clone https://github.com/carmineQA/qa-automation-portfolio.git
+cd qa-automation-portfolio
+npm install
+npx playwright install --with-deps
+```
+
+Create a `.env` file in the project root with the required Restful Booker credentials before running the API suite:
+
+```
+RESTFUL_BOOKER_USERNAME=admin
+RESTFUL_BOOKER_PASSWORD=password123
+```
+
+## Running the tests
+
+```bash
+npm test              # full suite, all projects
+npm run test:smoke    # @smoke tests only (same as the push/PR CI workflow)
+npm run test:regression   # @regression tests, all browsers + api project (same as the CI regression workflow)
+npm run report         # open the last HTML report
+```

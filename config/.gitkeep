@@ -1,0 +1,1 @@
+Reserved for environment/runtime configuration not yet needed beyond playwright.config.ts (e.g. per-environment settings). Empty on purpose for now.
