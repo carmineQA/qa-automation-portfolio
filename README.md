@@ -19,7 +19,9 @@ A test automation portfolio built with Playwright and TypeScript, demonstrating 
 | 2 | [Restful Booker](https://restful-booker.herokuapp.com/) | `tests/api/restful-booker` | API |
 | 3 | [Automation Exercise](https://automationexercise.com/) | `tests/e2e/automation-exercise` | Full E2E |
 
-Page Objects live under `pages/` and `components/`, the API client under `api/`, shared fixtures under `fixtures/`, test data under `test-data/`. Design decisions (e.g. why the `e2e` project is excluded from CI) are documented in `docs/decisions.md`.
+Page Objects live under `pages/` and `components/`, API clients under `api/`, shared fixtures under `fixtures/`, test data under `test-data/`. Design decisions (e.g. why the `e2e` project is excluded from CI, or why the checkout test seeds its account via API instead of the UI signup wizard) are documented in `docs/decisions.md`.
+
+Where a target exposes a usable API (Restful Booker, Automation Exercise), tests that only need a precondition (an authenticated account, a booking) set it up through an API client instead of repeating the full UI flow — see `api/automationExercise/accountApiClient.ts` and the `testAccount`/`authenticatedPage` fixtures in `fixtures/automationExercise.ts`, used by `tests/e2e/automation-exercise/checkout.spec.ts`. Tests whose actual purpose is to verify that UI flow itself (e.g. `registration.spec.ts`) still drive it through the UI.
 
 The `ai/` and `.claude/` folders contain the Claude Code skills and QA agent used to assist development (failure analysis, coverage gap detection, PR review, etc.) — not part of the test suite itself.
 
@@ -71,4 +73,8 @@ These three checks (`typecheck`, `lint`, `format:check`) run as a required `lint
 npm run report   # opens a local server on :9323 to browse the last HTML report — Ctrl+C to stop it
 ```
 
-The regression workflow also publishes its merged HTML report to GitHub Pages on every run to `main`.
+The regression workflow also publishes its merged HTML report to GitHub Pages on every run to `main`. On pull requests, the smoke workflow also posts a pass/fail test summary as a PR comment (via `daun/playwright-report-summary`).
+
+## Dependency updates
+
+Dependabot checks weekly for outdated `npm` dependencies and GitHub Actions used in the workflows (`.github/dependabot.yml`).
