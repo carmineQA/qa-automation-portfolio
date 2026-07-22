@@ -26,3 +26,29 @@ verify the Automation Exercise flows before merging a change that touches
 If a future need arises to automate this project reliably in CI, revisit with a paid
 proxy/residential IP service or a self-hosted runner — not attempted here, as it's out of
 scope for a personal portfolio project.
+
+## 2026-07-22 — API-seeded account for tests where login is only a precondition
+
+**Decision:** `tests/e2e/automation-exercise/checkout.spec.ts` creates and authenticates its
+test account through `fixtures/automationExercise.ts` (`testAccount` + `authenticatedPage`),
+which calls the public `POST /api/createAccount` and `DELETE /api/deleteAccount` endpoints
+that Automation Exercise documents on its own site, instead of driving the full multi-step
+signup wizard through the UI. The fixture still performs the actual **login** through the UI
+(`SignupLoginPage.login`), since that's the one step needed to establish a real browser
+session. `tests/e2e/automation-exercise/registration.spec.ts` is deliberately **not** changed:
+its entire purpose is to verify the UI signup flow itself, so replacing that flow with an API
+call would remove the very thing the test exists to check.
+
+**Why:** every test that required a logged-in account was repeating the same multi-field
+signup wizard (name/email → ~15-field account form → confirmation) purely as setup, not as
+something being verified. That's slower than necessary and adds UI surface (and therefore
+failure surface) to tests that aren't about signup at all — the same principle that already
+guided keeping assertions out of Page Objects, applied to test data setup instead of to code
+structure. Restful Booker tests already follow the equivalent approach at the API layer
+(`BookingApiClient`) for the same reason.
+
+**How to apply:** when adding a new Automation Exercise test that needs an authenticated
+account only as a precondition (not as the behavior under test), request the `testAccount`
+and/or `authenticatedPage` fixtures from `fixtures/automationExercise.ts` instead of repeating
+the UI signup flow. If a test's actual purpose is to verify signup/login/account-deletion
+itself, keep driving it through the UI, as `registration.spec.ts` does.
