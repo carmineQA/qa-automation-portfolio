@@ -29,12 +29,17 @@ test('@regression creating a booking returns a valid schema', async ({ request }
   expect(body.booking.firstname).toBe(validPayload.firstname);
 });
 
-test('@regression create, read, update and delete a booking (full CRUD flow)', async ({ request }) => {
+test('@regression create, read, update and delete a booking (full CRUD flow)', async ({
+  request,
+}) => {
   const client = new BookingApiClient(request);
   const username = process.env.RESTFUL_BOOKER_USERNAME;
   const password = process.env.RESTFUL_BOOKER_PASSWORD;
+  // eslint-disable-next-line playwright/no-conditional-in-test -- fail fast on missing config, not fragile test logic
   if (!username || !password) {
-    throw new Error('RESTFUL_BOOKER_USERNAME / RESTFUL_BOOKER_PASSWORD not found: check the .env file');
+    throw new Error(
+      'RESTFUL_BOOKER_USERNAME / RESTFUL_BOOKER_PASSWORD not found: check the .env file',
+    );
   }
   await client.authenticate(username, password);
 
@@ -58,7 +63,9 @@ test('@regression create, read, update and delete a booking (full CRUD flow)', a
   expect(deleteResponse.status()).toBe(201);
 });
 
-test('@regression creating a booking without the required firstname field returns an error', async ({ request }) => {
+test('@regression creating a booking without the required firstname field returns an error', async ({
+  request,
+}) => {
   const { firstname, ...invalidPayload } = validPayload;
   const response = await request.post('/booking', { data: invalidPayload });
   expect(response.status()).toBe(500);

@@ -3,7 +3,9 @@ import path from 'path';
 import { ContactUsPage } from '../../../pages/automationExercise/contactUsPage';
 import { createRandomCustomer } from '../../../test-data/factories';
 
-test('@regression submitting the contact form with a file attachment shows a success message', async ({ page }) => {
+test('@regression submitting the contact form with a file attachment shows a success message', async ({
+  page,
+}) => {
   const customer = createRandomCustomer();
   const contactUsPage = new ContactUsPage(page);
   await contactUsPage.goto();
@@ -12,10 +14,14 @@ test('@regression submitting the contact form with a file attachment shows a suc
     `${customer.firstName} ${customer.lastName}`,
     customer.email,
     'Question about an order',
-    'Could you confirm the delivery time for my last order? Thanks!'
+    'Could you confirm the delivery time for my last order? Thanks!',
   );
-  await contactUsPage.uploadFile(path.resolve(__dirname, '../../../test-data/fixtures/sample-upload.txt'));
+  await contactUsPage.uploadFile(
+    path.resolve(__dirname, '../../../test-data/fixtures/sample-upload.txt'),
+  );
   await contactUsPage.submit();
 
-  await expect(contactUsPage.getSuccessMessage()).toContainText('Success! Your details have been submitted successfully.');
+  await expect(contactUsPage.getSuccessMessage()).toContainText(
+    'Success! Your details have been submitted successfully.',
+  );
 });

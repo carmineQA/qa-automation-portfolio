@@ -54,6 +54,17 @@ npm run test:smoke        # @smoke tests only (same as the push/PR CI workflow)
 npm run test:regression   # @regression tests, all browsers + api project (same as the CI regression workflow)
 ```
 
+## Code quality
+
+```bash
+npm run typecheck     # TypeScript strict type-check, no output emitted
+npm run lint           # ESLint (TypeScript + Playwright-specific rules)
+npm run format:check   # Prettier formatting check
+npm run format         # Prettier auto-fix
+```
+
+These three checks (`typecheck`, `lint`, `format:check`) run as a required `lint` job in CI before any test job starts — see `.github/workflows/`.
+
 ## Report
 
 ```bash

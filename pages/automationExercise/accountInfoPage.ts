@@ -12,7 +12,6 @@ export type AccountDetails = {
 };
 
 export class AccountInfoPage {
-  private page: Page;
   private passwordInput: Locator;
   private daySelect: Locator;
   private monthSelect: Locator;
@@ -32,7 +31,6 @@ export class AccountInfoPage {
   private continueButton: Locator;
 
   constructor(page: Page) {
-    this.page = page;
     this.passwordInput = page.locator('#password');
     this.daySelect = page.locator('#days');
     this.monthSelect = page.locator('#months');
