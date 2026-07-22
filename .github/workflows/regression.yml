@@ -77,7 +77,7 @@ jobs:
       - name: Merge into a single HTML report
         run: npx playwright merge-reports --reporter html ./all-blob-reports
       - name: Upload merged HTML report as a Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: playwright-report/
 
