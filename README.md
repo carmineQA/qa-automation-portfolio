@@ -1,8 +1,8 @@
-# QA Automation Portfolio
+# Playwright TypeScript Automation Portfolio
 
-[![Playwright Tests](https://github.com/carmineQA/qa-automation-portfolio/actions/workflows/playwright.yml/badge.svg)](https://github.com/carmineQA/qa-automation-portfolio/actions/workflows/playwright.yml)
+[![Playwright Tests](https://github.com/carmineQA/playwright-typescript-automation-portfolio/actions/workflows/playwright.yml/badge.svg)](https://github.com/carmineQA/playwright-typescript-automation-portfolio/actions/workflows/playwright.yml)
 
-A test automation portfolio built with Playwright and TypeScript, demonstrating UI, API and end-to-end testing across three progressively complex targets, backed by a sharded CI pipeline and a set of custom Claude Code skills/agent used during development.
+A test automation portfolio built with Playwright and TypeScript, demonstrating UI, API and end-to-end testing across three progressively complex targets, backed by a sharded CI pipeline and a set of custom Claude Code skills/agent used during development. The flagship of a 3-stack portfolio, alongside [Selenium + Java](../selenium-java-automation-portfolio) and [Cypress + JavaScript](../cypress-javascript-automation-portfolio).
 
 ## Tech stack
 
@@ -33,8 +33,8 @@ The `ai/` and `.claude/` folders contain the Claude Code skills and QA agent use
 ## Installation
 
 ```bash
-git clone https://github.com/carmineQA/qa-automation-portfolio.git
-cd qa-automation-portfolio
+git clone https://github.com/carmineQA/playwright-typescript-automation-portfolio.git
+cd playwright-typescript-automation-portfolio
 npm install
 npx playwright install --with-deps
 ```
